@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -22,10 +23,6 @@ public class VRLaserPointer : MonoBehaviour
     [SerializeField] private XRNode controllerNode = XRNode.RightHand;
     [SerializeField] private InputDeviceCharacteristics deviceCharacteristics = 
         InputDeviceCharacteristics.Controller | InputDeviceCharacteristics.TrackedDevice;
-    
-    [Header("入力設定")]
-    [SerializeField] private string triggerButton = "TriggerButton";
-    [SerializeField] private float triggerThreshold = 0.1f;
     
     // プライベート変数
     private InputDevice targetDevice;
@@ -75,7 +72,8 @@ public class VRLaserPointer : MonoBehaviour
         
         // LineRendererの基本設定
         lineRenderer.material = laserMaterial;
-        lineRenderer.color = laserColor;
+        lineRenderer.startColor = laserColor;
+        lineRenderer.endColor = laserColor;
         lineRenderer.startWidth = laserWidth;
         lineRenderer.endWidth = laserWidth;
         lineRenderer.positionCount = 2;
